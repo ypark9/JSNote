@@ -101,3 +101,16 @@ var greetingEnglish = makeGreeting('en');
 
 greetingEnglish('Yoonsoo', 'Park');
 greetingSpanish('Yoonsoo', 'Park');
+
+
+//49. Closure and Callback
+// Callback: A function you give to anoterh function, to be 
+// run when the other function is finished.
+function sayHelloLater(){
+    var greeting = 'Hello!';
+    setTimeout(() => {
+        console.log(greeting);
+    }, 3000);
+}
+
+sayHelloLater();
