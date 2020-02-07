@@ -114,3 +114,28 @@ function sayHelloLater(){
 }
 
 sayHelloLater();
+
+//50. bind call and apply in js
+var Person50 = {
+    firstname : "Yoon",
+    lastname : "Park",
+    getFullName : function(){
+      return this.firstname + ' ' + this.lastname;  
+    }
+}
+
+var AnotherPerson50 = {
+    firstname : "Lacy",
+    lastname : "Park"
+}
+var fullname = Person50.getFullName();
+console.log("50." + fullname);
+
+// Dont forget fullname1 is the function statement. 
+// need to execute it to see the value.
+var fullname1 = Person50.getFullName.bind(AnotherPerson50);
+console.log("50." + fullname1());
+
+
+
+//51. Functional programming in js
