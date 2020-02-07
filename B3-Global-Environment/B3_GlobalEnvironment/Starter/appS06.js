@@ -30,3 +30,39 @@ console.log("Yoonsoo".isLengthGreaterThan(3));
 //this is not working. since number is changed to object.
 
 
+//62. Dont use var .. in for loop for Array
+//Since arry is also an Object in JS.
+var arr62 = ['Yoon', 'Lacy', 'Piper'];
+for(var prop in arr62)
+{
+    console.log(prop + ' :' + arr62[prop]);
+    
+}
+
+
+//63. Object inheritance. 
+var Person63 =  {
+    firstname : 'default',
+    lastname : 'default',
+    getFullname : function(){
+      return this.firstname + ' '+ this.lastname;   
+    }
+}
+var john = Object.create(Person63);
+john.firstname = "John";
+john.lastname = 'Doe'
+console.log(john.getFullname());
+
+//Polyfill - code that adds a feature which the engine may lack.
+if(!Object.create){
+    Object.create = function (o){
+        if(arguments.length > 1 ){
+            throw new Error('Object Create implementation '+ 
+            'only accepts one parameter.');
+        }
+    function F(){};
+    F.prototype = o;
+    return new F();
+    }
+}
+
