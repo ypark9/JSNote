@@ -49,10 +49,15 @@ function anagrams(stringA, stringB) {
     return stringA.split('').reverse().join('') === stringB;
 }
 
-console.log(anagrams('abba', 'baab'));
+function capitalize(str) {
+    var retStrArr = [];
+    let strArr = str.split(' ');
+    for(var item of strArr){
+        retStrArr.push((item[0].toUpperCase() + item.slice(1)));
+    }
 
-console.log(fib(3));
-console.log(reverseInt(-500));
-console.log("palin " + palindrom('agggddgga'));
+    return retStrArr.join(' ');
+}
 
-dothings();
+console.log(capitalize('capitalize : i am yoonsoo park. lets do this.\n'));
+
