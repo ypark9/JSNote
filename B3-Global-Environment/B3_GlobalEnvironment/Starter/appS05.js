@@ -59,5 +59,54 @@ function capitalize(str) {
     return retStrArr.join(' ');
 }
 
+class Queue {
+    constructor() {
+      this.data = [];
+    }
+  
+    add(record) {
+      this.data.unshift(record);
+    }
+  
+    remove() {
+      return this.data.pop();
+    }
+  
+    weave(sourceOne, sourceTwo) {
+      const wQ = new Queue();
+      var bigger = sourceOne.data.length >= sourceTwo.data.length ? sourceOne.data.length : sourceTwo.data.length;
+      console.log(bigger);
+      
+      if (sourceOne.length === 0)
+        return sourceTwo;
+      if (sourceTwo.length === 0)
+        return sourceOne;
+      for (let i = 0; i < bigger; i++) {
+        if (sourceOne.data[i] !== undefined)
+          wQ.add(sourceOne[i]);
+        if (sourceTwo[i] !== undefined)
+          wQ.add(sourceTwo[i]);
+      }
+      console.log(wQ);
+      return wQ;
+      }
+  
+      peek() {
+        return this.data[this.data.length- 1];
+      }
+  }
+
+const q1 = new Queue();
+q1.add(1);
+q1.add(2);
+const q2 = new Queue();
+q2.add('hi');
+q2.add('there');
+console.log(q1);
+console.log(q2);
+
+
+console.log(q1.weave(q1, q2));
+
 console.log(capitalize('capitalize : i am yoonsoo park. lets do this.\n'));
 
