@@ -58,55 +58,72 @@ function capitalize(str) {
 
     return retStrArr.join(' ');
 }
-
-class Queue {
-    constructor() {
-      this.data = [];
-    }
-  
-    add(record) {
-      this.data.unshift(record);
-    }
-  
-    remove() {
-      return this.data.pop();
-    }
-  
-    weave(sourceOne, sourceTwo) {
-      const wQ = new Queue();
-      var bigger = sourceOne.data.length >= sourceTwo.data.length ? sourceOne.data.length : sourceTwo.data.length;
-      console.log(bigger);
-      
-      if (sourceOne.length === 0)
-        return sourceTwo;
-      if (sourceTwo.length === 0)
-        return sourceOne;
-      for (let i = 0; i < bigger; i++) {
-        if (sourceOne.data[i] !== undefined)
-          wQ.add(sourceOne[i]);
-        if (sourceTwo[i] !== undefined)
-          wQ.add(sourceTwo[i]);
-      }
-      console.log(wQ);
-      return wQ;
-      }
-  
-      peek() {
-        return this.data[this.data.length- 1];
-      }
+class Node {
+  constructor(data) {
+      this.data = data;
+      this.children = [];
   }
 
-const q1 = new Queue();
-q1.add(1);
-q1.add(2);
-const q2 = new Queue();
-q2.add('hi');
-q2.add('there');
-console.log(q1);
-console.log(q2);
+  add(data) {
+      this.children.push(new Node(data));
+  }
+
+  remove(data) {
+      this.children = this.children.filter((node) => {
+          return node.data !== data;
+      });
+  }
+}
+
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+
+  traverseBF() {
+    let arr = [];
+    arr.push(this.root);
+    while (arr.length !== 0) {
+      let node = arr.shift();
+      console.log(node.data);
+
+      for (let child of node.children) {
+        arr.push(child);
+      }
+    }
+  }
+
+  traverseBF(fn) {
+    let arr = [];
+    arr.push(this.root);
+    while (arr.length !== 0) {
+      let node = arr.shift();
+      for (let child of node.children) {
+        arr.push(child);
+      }
+      fn(node);
+    }
+  }
+}
+
+let oTree = new Tree();
+oTree.root = new Node('a');
+
+oTree.root.children.push(new Node('b'));
+oTree.root.children.push(new Node('c'));
+oTree.root.children.push(new Node('d'));
+
+oTree.root.children[0].children.push(new Node('1'));
+oTree.root.children[0].children.push(new Node('2'));
+oTree.root.children[0].children.push(new Node('3'));
+
+oTree.root.children[1].children.push(new Node('!!'));
+oTree.root.children[2].children.push(new Node('___'));
 
 
-console.log(q1.weave(q1, q2));
+oTree.traverseBF(function(node){
+  node.data +='1';
+  console.log(node.data);
+});
 
-console.log(capitalize('capitalize : i am yoonsoo park. lets do this.\n'));
 
